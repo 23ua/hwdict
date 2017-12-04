@@ -31,6 +31,7 @@ executable hwdict
                      , hwdict
                      , optparse-applicative
                      , binary
+                     , bytestring
   default-language:    Haskell2010
 
 test-suite hwdict-test

@@ -4,6 +4,7 @@ import Data.HWDict (decode)
 import Options.Applicative
 import Data.Semigroup ((<>))
 import Data.Binary (encodeFile)
+import qualified Data.ByteString.Lazy as BSL
 
 newtype PathIn = PathIn FilePath
 newtype PathOut = PathOut FilePath
@@ -19,7 +20,7 @@ main = handle =<< execParser opts
 
 handle :: Opts -> IO()
 handle (Convert (PathIn inFile) (PathOut outFile)) = do
-    xml <- readFile inFile
+    xml <- BSL.readFile inFile
     let maybeEntries = decode xml
     let numProcessed = show $ maybe 0 length maybeEntries
     mapM_ (encodeFile outFile) maybeEntries

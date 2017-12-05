@@ -21,9 +21,9 @@ main = handle =<< execParser opts
 handle :: Opts -> IO()
 handle (Convert (PathIn inFile) (PathOut outFile)) = do
     xml <- BSL.readFile inFile
-    let maybeEntries = decode xml
-    let numProcessed = show $ maybe 0 length maybeEntries
-    mapM_ (encodeFile outFile) maybeEntries
+    let entries = decode xml
+    let numProcessed = show $ length entries
+    encodeFile outFile entries
     putStrLn $ numProcessed ++ " words written to " ++ outFile
 
 convertParser :: Parser Opts

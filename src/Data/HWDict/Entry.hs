@@ -5,10 +5,11 @@ module Data.HWDict.Entry where
 import Prelude(Show, Eq, String)
 import Data.Binary (Binary)
 import GHC.Generics (Generic)
+import Data.Text (Text)
 
-type Word = String
+type Word = Text
 
-type Meaning = String
+type Meaning = Text
 
 data Entry =
     Entry Word
